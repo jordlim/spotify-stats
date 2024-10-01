@@ -1,0 +1,45 @@
+{% macro container(display_name, songs, id, duration) -%}
+<div class="container" id="{{ id }}">
+    <h2 class="logo">
+        {{ duration }}
+    </h2>
+    <p class="date">
+        {{ display_name }}
+    </p>
+    <p class="date">
+       {{currentTime|strftime}}
+    </p>
+
+    <table class="tracks">
+        <thead>
+            <tr>
+                <td class="begin">
+                    #
+                </td>
+                <td>
+                    Track
+                </td>
+                <td class="length">
+                    Length
+                </td>
+            </tr>
+        </thead>
+    {% for song in songs %}
+        <tr>
+            <td class="begin">
+                {{ loop.index }}
+            </td>
+            <td class="name">
+                {{ song.name }} - {{ song.artists[0].name }}
+            </td>
+            <td class="length">
+                {{ song.duration_ms | mmss }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+</div>
+
+
+{%- endmacro %}
